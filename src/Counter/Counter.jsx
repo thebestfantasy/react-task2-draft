@@ -14,17 +14,25 @@ class Counter extends Component {
     //   counter: 1,
     // });
     this.setState((prevState) => {
-      console.log(prevState);
       return {
         counter: prevState.counter + 1,
       };
     });
   };
 
-  handleDecrement = () =>
-    this.setState((prevState) => ({
-      counter: prevState.counter - 1,
-    }));
+  handleDecrement = () => {
+    this.setState((prevState) => {
+      if (prevState.counter === 0) return { counter: 0 };
+      return {
+        counter: prevState.counter - 1,
+      };
+    });
+  };
+
+  // handleDecrement = () =>
+  //   this.setState((prevState) => ({
+  //     counter: prevState.counter - 1,
+  //   }));
 
   render() {
     return (
@@ -36,11 +44,17 @@ class Counter extends Component {
               {this.state.counter}
             </p>
             <div className="d-flex justify-content-center px-5">
-              <button className="btn btn-outline-success me-5" onClick={this.handleIncrement}>
+              <button
+                className="btn btn-outline-success me-5"
+                onClick={this.handleIncrement}
+              >
                 <i className="bi bi-plus-circle fs-1"></i>
               </button>
 
-              <button className="btn  btn-outline-danger ms-5" onClick={this.handleDecrement}>
+              <button
+                className="btn  btn-outline-danger ms-5"
+                onClick={this.handleDecrement}
+              >
                 <i className="bi bi-dash-circle fs-1"></i>
               </button>
             </div>
