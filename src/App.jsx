@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-// import Header from "./Header/Header";
+import Header from "./Header/Header";
 // import Counter from "./Counter/Counter";
-// import Modal from "./Modal/Modal";
+import Modal from "./Modal/Modal";
 import ToDoList from "./toDoList/toDoList.jsx";
-// import ToDo from "./toDo/toDo";
-// import todo from "./toDo/toDo.json";
+import FormSignUp from "./FormSignUp/FormSignUp.jsx";
+import { nanoid } from "nanoid";
 
 class App extends Component {
   state = {
@@ -19,32 +19,30 @@ class App extends Component {
     this.setState({ isShowModal: false });
   };
 
+  createUser = (data) => {
+    const newUser = {
+      id: nanoid(),
+      isDev: true,
+      ...data,
+    };
+    console.log(newUser);
+  };
+
   render() {
     return (
       <div className="container">
-        {/* <Header showModal={this.showModal} />
-        <Counter /> */}
+        <Header showModal={this.showModal} />
         <ToDoList />
-        {/* {this.state.isShowModal && (
+        <FormSignUp createUser={this.createUser} />
+        {/* <Counter /> */}
+        {this.state.isShowModal && (
           <Modal closeModal={this.closeModal}>
             <h2>Modal</h2>
           </Modal>
-        )} */}
+        )}
       </div>
     );
   }
 }
-
-// const App = () => {
-//   return (
-//     <div className="container">
-//       <Header />
-//       <Counter />
-//       <Modal>
-//         <h2>Modal</h2>
-//       </Modal>
-//     </div>
-//   );
-// };
 
 export default App;
